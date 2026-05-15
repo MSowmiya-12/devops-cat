@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List App</title>
 
   <style>
     *{
@@ -14,106 +14,122 @@
     }
 
     body{
-      background:#f4f4f4;
-      color:#333;
-    }
-
-    header{
-      background:#0077ff;
-      color:white;
-      padding:20px;
-      text-align:center;
-    }
-
-    nav{
-      background:#0056b3;
-      padding:10px;
-      text-align:center;
-    }
-
-    nav a{
-      color:white;
-      text-decoration:none;
-      margin:0 15px;
-      font-weight:bold;
-    }
-
-    .hero{
-      height:300px;
+      background:linear-gradient(135deg,#4facfe,#00f2fe);
+      height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      flex-direction:column;
-      background:linear-gradient(to right, #0077ff, #00c6ff);
-      color:white;
-      text-align:center;
     }
 
-    .hero h1{
-      font-size:40px;
-      margin-bottom:10px;
-    }
-
-    .hero p{
-      font-size:18px;
-      margin-bottom:20px;
-    }
-
-    .btn{
-      padding:10px 20px;
+    .container{
       background:white;
-      color:#0077ff;
+      width:350px;
+      padding:25px;
+      border-radius:15px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:20px;
+      color:#333;
+    }
+
+    .input-box{
+      display:flex;
+      gap:10px;
+    }
+
+    input{
+      flex:1;
+      padding:10px;
+      border:2px solid #ddd;
+      border-radius:8px;
+      outline:none;
+    }
+
+    button{
+      padding:10px 15px;
       border:none;
-      border-radius:5px;
-      cursor:pointer;
-      font-size:16px;
-    }
-
-    .content{
-      padding:40px;
-      text-align:center;
-    }
-
-    footer{
-      background:#222;
+      background:#4facfe;
       color:white;
-      text-align:center;
-      padding:15px;
-      margin-top:30px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button:hover{
+      background:#2196f3;
+    }
+
+    ul{
+      margin-top:20px;
+      list-style:none;
+    }
+
+    li{
+      background:#f4f4f4;
+      padding:10px;
+      margin-bottom:10px;
+      border-radius:8px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .delete{
+      background:red;
+      padding:5px 10px;
+      border-radius:5px;
+      color:white;
+      cursor:pointer;
+      border:none;
+    }
+
+    .delete:hover{
+      background:darkred;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>My Website</h1>
-  </header>
+  <div class="container">
+    <h1>📝 To-Do List</h1>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
-  </nav>
+    <div class="input-box">
+      <input type="text" id="taskInput" placeholder="Enter task">
+      <button onclick="addTask()">Add</button>
+    </div>
 
-  <section class="hero">
-    <h1>Welcome!</h1>
-    <p>This is a simple HTML and CSS website.</p>
-    <button class="btn">Get Started</button>
-  </section>
+    <ul id="taskList"></ul>
+  </div>
 
-  <section class="content">
-    <h2>About This Website</h2>
-    <p>
-      This webpage is created using only HTML and CSS.
-      It is beginner-friendly and easy to customize.
-    </p>
-  </section>
+  <script>
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let task = input.value;
 
-  <footer>
-    <p>© 2026 My Website | All Rights Reserved</p>
-  </footer>
+      if(task === ""){
+        alert("Please enter a task!");
+        return;
+      }
+
+      let li = document.createElement("li");
+      li.innerHTML = `
+        ${task}
+        <button class="delete" onclick="removeTask(this)">X</button>
+      `;
+
+      document.getElementById("taskList").appendChild(li);
+
+      input.value = "";
+    }
+
+    function removeTask(button){
+      button.parentElement.remove();
+    }
+  </script>
 
 </body>
 </html>
