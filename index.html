@@ -1,42 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Website</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f4f4;
+      color:#333;
+    }
+
+    header{
+      background:#0077ff;
+      color:white;
+      padding:20px;
+      text-align:center;
+    }
+
+    nav{
+      background:#0056b3;
+      padding:10px;
+      text-align:center;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin:0 15px;
+      font-weight:bold;
+    }
+
+    .hero{
+      height:300px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      background:linear-gradient(to right, #0077ff, #00c6ff);
+      color:white;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+      font-size:18px;
+      margin-bottom:20px;
+    }
+
+    .btn{
+      padding:10px 20px;
+      background:white;
+      color:#0077ff;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .content{
+      padding:40px;
+      text-align:center;
+    }
+
+    footer{
+      background:#222;
+      color:white;
+      text-align:center;
+      padding:15px;
+      margin-top:30px;
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0; font-family:Arial, sans-serif; background:linear-gradient(to right, #4facfe, #00f2fe); height:100vh; display:flex; justify-content:center; align-items:center;">
 
-    <div style="background:white; padding:40px; border-radius:12px; width:320px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
-        
-        <h2 style="text-align:center; margin-bottom:25px; color:#333;">Login</h2>
+<body>
 
-        <form>
-            <input 
-                type="text" 
-                placeholder="Username"
-                style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size:16px; box-sizing:border-box;"
-            />
+  <header>
+    <h1>My Simple Website</h1>
+  </header>
 
-            <input 
-                type="password" 
-                placeholder="Password"
-                style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:6px; font-size:16px; box-sizing:border-box;"
-            />
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </nav>
 
-            <button 
-                type="submit"
-                style="width:100%; padding:12px; background:green ; border:none; border-radius:0px; color:white; font-size:16px; cursor:pointer;"
-            >
-                Login
-            </button>
-        </form>
+  <section class="hero">
+    <h1>Welcome!</h1>
+    <p>This is a simple HTML and CSS website.</p>
+    <button class="btn">Get Started</button>
+  </section>
 
-        <p style="text-align:center; margin-top:15px; color:#666; font-size:14px;">
-            Don't have an account? Sign up
-        </p>
+  <section class="content">
+    <h2>About This Website</h2>
+    <p>
+      This webpage is created using only HTML and CSS.
+      It is beginner-friendly and easy to customize.
+    </p>
+  </section>
 
-    </div>
+  <footer>
+    <p>© 2026 My Website | All Rights Reserved</p>
+  </footer>
 
 </body>
 </html>
