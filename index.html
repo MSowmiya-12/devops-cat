@@ -1,135 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Age Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    body{
-      background: linear-gradient(135deg, #ff9966, #ff5e62);
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      overflow: hidden;
     }
 
-    .container{
-      background:white;
-      width:350px;
-      padding:25px;
-      border-radius:15px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    .container {
+      width: 380px;
+      padding: 35px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      color: white;
+      animation: fadeIn 1s ease;
     }
 
-    h1{
-      text-align:center;
-      margin-bottom:20px;
-      color:#333;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .input-box{
-      display:flex;
-      gap:10px;
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
     }
 
-    input{
-      flex:1;
-      padding:10px;
-      border:2px solid #ddd;
-      border-radius:8px;
-      outline:none;
+    p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 25px;
     }
 
-    button{
-      padding:10px 15px;
-      border:none;
-      background:#4facfe;
-      color:white;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:bold;
+    .input-box {
+      margin-bottom: 20px;
     }
 
-    button:hover{
-      background:#2196f3;
+    input {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      font-size: 16px;
+      background: rgba(255,255,255,0.2);
+      color: white;
     }
 
-    ul{
-      margin-top:20px;
-      list-style:none;
+    input::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
     }
 
-    li{
-      background:#f4f4f4;
-      padding:10px;
-      margin-bottom:10px;
-      border-radius:8px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: white;
+      color: #5a4fcf;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .delete{
-      background:red;
-      padding:5px 10px;
-      border-radius:5px;
-      color:white;
-      cursor:pointer;
-      border:none;
+    button:hover {
+      transform: scale(1.03);
+      background: #f1f1f1;
     }
 
-    .delete:hover{
-      background:darkred;
+    .result {
+      margin-top: 25px;
+      padding: 18px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.15);
+      display: none;
+    }
+
+    .result h2 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .result span {
+      color: #ffe082;
+    }
+
+    @media (max-width: 450px) {
+      .container {
+        width: 90%;
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
-
 <body>
 
   <div class="container">
-    <h1>📝 To-Do List</h1>
+    <h1>🎂  Calculator</h1>
+    <p>Find your exact age instantly</p>
 
     <div class="input-box">
-      <input type="text" id="taskInput" placeholder="Enter task">
-      <button onclick="addTask()">Add</button>
+      <input type="date" id="dob">
     </div>
 
-    <ul id="taskList"></ul>
+    <button onclick="calculateAge()">Calculate Age</button>
+
+    <div class="result" id="resultBox">
+      <h2>You are <span id="age">0</span> years old</h2>
+      <p>Keep smiling and enjoy your life ✨</p>
+    </div>
   </div>
 
   <script>
-    function addTask() {
-      let input = document.getElementById("taskInput");
-      let task = input.value;
+    function calculateAge() {
+      let dob = document.getElementById('dob').value;
 
-      if(task === ""){
-        alert("Please enter a task!");
+      if (dob === '') {
+        alert('Please select your date of birth');
         return;
       }
 
-      let li = document.createElement("li");
-      li.innerHTML = `
-        ${task}
-        <button class="delete" onclick="removeTask(this)">X</button>
-      `;
+      let birthDate = new Date(dob);
+      let today = new Date();
 
-      document.getElementById("taskList").appendChild(li);
+      let age = today.getFullYear() - birthDate.getFullYear();
 
-      input.value = "";
-    }
+      let monthDiff = today.getMonth() - birthDate.getMonth();
 
-    function removeTask(button){
-      button.parentElement.remove();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      document.getElementById('age').innerText = age;
+      document.getElementById('resultBox').style.display = 'block';
     }
   </script>
 
 </body>
 </html>
+
+tell me where is the background and i have to change it to another
